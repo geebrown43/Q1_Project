@@ -23,25 +23,39 @@ el.addEventListener('submit', (event) => {
                         center: [lng, lat],
                     });
 
-    fetch(`https://galvanize-cors-proxy.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&rankby=distance&types=shoe_store&key=${key}`)
-            .then((response) => {
-                return response.json()
-                    .then((places) => {
-                        //Used to view full properties 
-                         //console.log(places)  
-                        var arrofName = [];
-                        var arrofLat = [];
-                        var arrofLng = [];
-                            for (var i = 0; i < places.results.length; i++) {
-                                var storeName = places.results[i].name
-                                arrofName.push(storeName)
-                                var storeLat = places.results[i].geometry.location.lat
-                                arrofLat.push(storeLat)
-                                var storeLng = places.results[i].geometry.location.lng
-                                arrofLng.push(storeLng)
-                                    }
-                                    console.log(arrofName, arrofLat, arrofLng)
+                    fetch(`https://galvanize-cors-proxy.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&rankby=distance&types=shoe_store&key=${key}`)
+                        .then((response) => {
+                            return response.json()
+                                .then((places) => {
+                                    //Used to view full properties 
+                                    console.log(places)  
+                                     var arrofName = [];
+                                     var arrofLat = [];
+                                     var arrofLng = [];
+                                    var main_content= document.getElementById('main_content');
+                                    
+                                    for (var i = 0; i < places.results.length; i++) {
+                                        var storeName = places.results[i].name
+                                        var h3 = document.createElement('h3')
+                                        h3.innerText = storeName;
+                                        main_content.append(h3)
+                                        arrofName.push(storeName)
 
+                                        var storeLat = places.results[i].geometry.location.lat
+                                        var p = document.createElement('p')
+                                        p.innerText = storeLat;
+                                        main_content.append(p)
+                                        arrofLat.push(storeLat)
+
+                                        var storeLng = places.results[i].geometry.location.lng
+                                        arrofLng.push(storeLng)
+
+                                        
+                                    }
+                                    console.log(arrofName)
+                                                                                                    
+                                
+            
                                 })
                         })
                 })
