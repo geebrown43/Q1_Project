@@ -61,17 +61,20 @@ getData = (id) => {
                                         a.setAttribute('data-lat', storeLat)
                                         a.setAttribute('data-lng', storeLng)
                     
+                                        
                                         a.addEventListener('click', (event) => {
                                             event.preventDefault();
-                                            
+                                            var id = event.target
                                             flyToStore = (a) => {
                                                 map.flyTo({
                                                     center:[a.dataset.lng, a.dataset.lat],
                                                     zoom : 15
                                                 });
+                                                console.log(a)
+                                                
                                             }
                                         //directionsAPI(a);
-                                        flyToStore(a)
+                                        flyToStore(id)
                                 
                                         })
                                     
