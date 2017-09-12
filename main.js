@@ -96,7 +96,7 @@ mapboxgl.accessToken =
         var map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/geebrown43/cj7gp6s083y6m2stagjnq139j',
-            zoom: 15,
+            zoom: 4,
             //longitude first, then latitude
             center: [galvanize[1], galvanize[0]],
         });
