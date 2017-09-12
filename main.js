@@ -1,7 +1,7 @@
 var el = document.getElementById('form')
-
 var key = 'AIzaSyDydF9_qyXVTdAs8G7IFUJngvSu1Ic7kSY'
-
+//galvanize coordinates  lat 39.7576305, lng -105.0070158
+var galvanize = [39.7576305, -105.0070158]
 el.addEventListener('submit', (event) => {
     event.preventDefault();
     var id = event.target.elements.address_input.value;
@@ -11,66 +11,76 @@ el.addEventListener('submit', (event) => {
 
 getData = (id) => {
     fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${id}&key=${key}`)
-    .then((response) => {
-        return response.json()
-            .then((data) => {
-                var lat = data.results[0].geometry.location.lat
-                var lng = data.results[0].geometry.location.lng
-                //console.log(lng)
-                mapboxgl.accessToken =
-                    'pk.eyJ1IjoiZ2VlYnJvd240MyIsImEiOiJjajU5MTIxYmowMzV4MnhxcDlpeGN5cHg5In0.Y1nYL-rtvgEwS3qV0YkMrQ';
-                var map = new mapboxgl.Map({
-                    container: 'map',
-                    style: 'mapbox://styles/mapbox/navigation-guidance-day-v2',
-                    zoom: 14,
-                    //longitude first, then latitude
-                    center: [lng, lat],
-                });
-                // 20miles = 32186.9 meters
-                fetch(`https://galvanize-cors-proxy.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=32186.9&type=shoe_store&key=${key}`)
-                    .then((response) => {
-                        return response.json()
-                            .then((places) => {
-                                //Used to view full properties 
-                                console.log(places)  
-                                var arrofName = [];
-                                var arrofLat = [];
-                                var arrofLng = [];
-                                var arrofRating = [];
-                                var main_content = document.getElementsByClassName('main_content')[0]
-                                main_content.innerHTML = ''                   
-                                for (var i = 0; i < places.results.length; i++) {
-                                    var storeName = places.results[i].name
-                                    var h3 = document.createElement('h3')
-                                    h3.innerText = storeName;
-                                    main_content.append(h3)
-                                    arrofName.push(storeName)
+        .then((response) => {
+            return response.json()
+                .then((data) => {
+                    var lat = data.results[0].geometry.location.lat
+                    var lng = data.results[0].geometry.location.lng
+                    //console.log(lng)
+                    mapboxgl.accessToken =
+                        'pk.eyJ1IjoiZ2VlYnJvd240MyIsImEiOiJjajU5MTIxYmowMzV4MnhxcDlpeGN5cHg5In0.Y1nYL-rtvgEwS3qV0YkMrQ';
+                    var map = new mapboxgl.Map({
+                        container: 'map',
+                        style: 'mapbox://styles/geebrown43/cj7gp6s083y6m2stagjnq139j',
+                        zoom: 15,
+                        //longitude first, then latitude
+                        center: [lng, lat],
+                    });
+                    // 20miles = 32186.9 meters
+                    fetch(`https://galvanize-cors-proxy.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=32186.9&type=shoe_store&key=${key}`)
+                        .then((response) => {
+                            return response.json()
+                                .then((places) => {
+                                    //Used to view full properties 
+                                    console.log(places)
+                                    var arrofName = [];
+                                    var arrofLat = [];
+                                    var arrofLng = [];
+                                    var arrofRating = [];
+                                    var main_content = document.getElementsByClassName('main_content')
+                                    main_content.innerHTML = ''
+                                    var className = document.getElementsByClassName('name')[0]
+                                    var classRating = document.getElementsByClassName('rating')[0]
+                                    var classAddress = document.getElementsByClassName('address')[0]
+                                    for (var i = 0; i < places.results.length; i++) {
+                                        var storeName = places.results[i].name
+                                        var h2 = document.createElement('h2')
+                                        h2.innerText = storeName;
+                                        className.append(h2)
+                                        arrofName.push(storeName)
 
-                                    var storeRating = places.results[i].rating
-                                    var p = document.createElement('p')
-                                    p.innerText = storeRating;
-                                    main_content.appendChild(p)
-                                    arrofRating.push(storeRating)
+                                        var storeRating = places.results[i].rating
+                                        var p = document.createElement('p')
+                                        p.innerText = storeRating;
+                                        className.appendChild(p)
+                                        arrofRating.push(storeRating)
 
-                                    var storeLat = places.results[i].geometry.location.lat
-                                    arrofLat.push(storeLat)
+                                        var storeLat = places.results[i].geometry.location.lat
+                                        arrofLat.push(storeLat)
 
-                                    var storeLng = places.results[i].geometry.location.lng
-                                    arrofLng.push(storeLng)
+                                        var storeLng = places.results[i].geometry.location.lng
+                                        arrofLng.push(storeLng)
+
+                                fetch(`https://galvanize-cors-proxy.herokuapp.com/https://maps.googleapis.com/maps/api/directions/json?origin=${galvanize[0]}, ${galvanize[1]}&destination=${storeLat}, ${storeLng}&key=${key}`)
+                                .then((response) => {
+                                    return response.json()
+                                    .then ((directions) => {
+                                        var address =directions.routes[0].legs[0].end_address
+                                        var h4 = document.createElement('h4')
+                                        h4.innerText = address
+                                        className.appendChild(h4)
+                                        console.log(address)
+                                    })
+                                })
+
+                                    }
+                                    //console.log(arrofName, arrofLat, arrofLng)
 
 
-                                }
-                                console.log(arrofName, arrofLat, arrofLng)
-                                
 
-
-                            })
-                    })
-            })
-    })
+                                })
+                        })
+                })
+        })
     return el.reset()
 }
-    
-
-
-
