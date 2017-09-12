@@ -60,10 +60,19 @@ getData = (id) => {
                                         
                                         a.setAttribute('data-lat', storeLat)
                                         a.setAttribute('data-lng', storeLng)
-
+                    
                                         a.addEventListener('click', (event) => {
                                             event.preventDefault();
-                                        directionsAPI(a);
+                                            
+                                            flyToStore = (a) => {
+                                                map.flyTo({
+                                                    center:[a.dataset.lng, a.dataset.lat],
+                                                    zoom : 15
+                                                });
+                                            }
+                                        //directionsAPI(a);
+                                        flyToStore(a)
+                                
                                         })
                                     
                                         
@@ -90,17 +99,17 @@ mapboxgl.accessToken =
         });
 
 
-directionsAPI = (a) => {
-    fetch(`https://api.mapbox.com/directions/v5/mapbox/driving/${galvanize[1]},${galvanize[0]};${a.dataset.lng},${a.dataset.lat}?access_token=${key2}`)
-    .then ((response) => {
-        return response.json()
-        .then((address) => {
-            console.log(address)
+// directionsAPI = (a) => {
+//     fetch(`https://api.mapbox.com/directions/v5/mapbox/driving/${galvanize[1]},${galvanize[0]};${a.dataset.lng},${a.dataset.lat}?access_token=${key2}`)
+//     .then ((response) => {
+//         return response.json()
+//         .then((address) => {
+//             console.log(address)
 
             
 
             
-        })
-    })
-}
+//         })
+//     })
+// }
 
