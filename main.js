@@ -36,43 +36,35 @@ getData = (id) => {
                                     var arrofName = [];
                                     var arrofLat = [];
                                     var arrofLng = [];
-                                    var arrofRating = [];
-                                    var main_content = document.getElementsByClassName('main_content')
+                                    var arrofAddress = [];
+                                    var main_content = document.getElementsByClassName('main_content')[0]
                                     main_content.innerHTML = ''
-                                    var className = document.getElementsByClassName('name')[0]
-                                    var classRating = document.getElementsByClassName('rating')[0]
-                                    var classAddress = document.getElementsByClassName('address')[0]
+                                    
                                     for (var i = 0; i < places.results.length; i++) {
+                                        var div = document.createElement('div')
+                                        div.className = 'store_info'
+                                       
                                         var storeName = places.results[i].name
-                                        var h2 = document.createElement('h2')
-                                        h2.innerText = storeName;
-                                        className.append(h2)
+                                        var a = document.createElement('a')
+                                        a.className = 'name'
+                                        a.innerText = storeName;
+                                        div.appendChild(a)
                                         arrofName.push(storeName)
 
-                                        var storeRating = places.results[i].rating
-                                        var p = document.createElement('p')
-                                        p.innerText = storeRating;
-                                        className.appendChild(p)
-                                        arrofRating.push(storeRating)
+                                        var storeAddress = places.results[i].vicinity
+                                        var h3 = document.createElement('h3')
+                                        h3.className = 'address'
+                                        h3.innerText = 'Address: ' + storeAddress;
+                                        div.appendChild(h3)
+                                        arrofAddress.push(storeAddress)
 
                                         var storeLat = places.results[i].geometry.location.lat
                                         arrofLat.push(storeLat)
 
                                         var storeLng = places.results[i].geometry.location.lng
                                         arrofLng.push(storeLng)
-
-                                fetch(`https://galvanize-cors-proxy.herokuapp.com/https://maps.googleapis.com/maps/api/directions/json?origin=${galvanize[0]}, ${galvanize[1]}&destination=${storeLat}, ${storeLng}&key=${key}`)
-                                .then((response) => {
-                                    return response.json()
-                                    .then ((directions) => {
-                                        var address =directions.routes[0].legs[0].end_address
-                                        var h4 = document.createElement('h4')
-                                        h4.innerText = address
-                                        className.appendChild(h4)
-                                        console.log(address)
-                                    })
-                                })
-
+                     
+                                        main_content.append(div)
                                     }
                                     //console.log(arrofName, arrofLat, arrofLng)
 
@@ -84,3 +76,7 @@ getData = (id) => {
         })
     return el.reset()
 }
+
+
+
+

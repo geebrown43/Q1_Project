@@ -1,29 +1,58 @@
 <html>
-    
+
 <head>
-    <meta charset=utf-8 />
-    <title>Q1 Project</title>
-    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <script src='https://api.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.js'></script>
-    <link href='https://api.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.css' rel='stylesheet' />
-    <link rel="stylesheet" href="main.css">
+  <meta charset=utf-8 />
+  <title>Q1 Project</title>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+  <script src='https://api.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.css' rel='stylesheet' />
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.2/css/bulma.min.css">
 
 </head>
 
+
+
 <body>
+  <section class="hero is-medium is-danger is-bold">
+    <div class="hero-body">
+      <div class="container has-text-centered">
+        <h1 class="title">
+          Shoe Locator
+        </h1>
+      </div>
+    </div>
+  </section>
+  <div class="container is-fluid">
     <div class="main_form">
-        <form id="form">
-            <input type="text" name="address_input" placeholder="Enter Address, State">
-        </form>
+      <form id="form">
+        <div class="field">
+          <div class="control">
+            <div class="columns">
+              <div class="column is-half">
+                <input class="input is-info is-small margin_input" type="text" name="address_input" placeholder="Enter Address, State">
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
     </div>
-    <div id='map'></div>
-    <div class="main_content">
-        <div class="name"></div>
-        <div class="rating"></div>
-        <div class="address"></div>
+    
+    <div class="columns">
+      <div class="column is-one-third">
+        <div class="main_content"></div>
+      </div>
+      <div class="column">
+          <div id='map'></div>
+      </div>
     </div>
-    <script src="main.js"></script>
+
+
+
+
+  </div>
+  <script src="main.js"></script>
+
 </body>
 
 </html>
-
