@@ -69,7 +69,7 @@ getData = (id) => {
                                                 newid.push(id)
                                             flyToStore(id)
                                             directionsAPI(id)
-                                        
+                                            
                                             
 
                                         })
@@ -81,6 +81,8 @@ getData = (id) => {
                         })
                 })
         })
+        currentLoc.shift()
+        currentLoc.shift()
     return el.reset()
 }
 var newid = []
@@ -90,7 +92,7 @@ callMap = () => {
     var map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/geebrown43/cj7gp6s083y6m2stagjnq139j',
-        zoom: 10,
+        zoom: 13,
         //longitude first, then latitude
         center: [currentLoc[0], currentLoc[1]],
     });
@@ -109,7 +111,9 @@ callMap = () => {
             .then((response) => {
                 return response.json()
                     .then((data) => {
-                        console.log(data)
+                        data.innerHTML = " "
+                        console.log(currentLoc)
+                        console.log(end)
                         var route = data.routes[0].geometry;
                         map.addLayer({
                             id: 'route',
@@ -156,10 +160,14 @@ callMap = () => {
                         });
                         var instructions = document.getElementById('instructions');
                         var steps = data.routes[0].legs[0].steps;
+                        
                         steps.forEach(function (step) {
                             instructions.insertAdjacentHTML('beforeend', '<p>' + step.maneuver.instruction + '</p>');
+                            return steps.innerHTML = ''
                         })
 
+                         
+                        
                     });
 
             })
