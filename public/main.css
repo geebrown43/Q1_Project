@@ -50,7 +50,12 @@ body {
 }
 
 .background-color {
-    background-color: rgb(243, 236, 219)
+    background-color: rgb(243, 236, 219);
+    background: url('pictures/shoe-store-locator-logo.png') ;
+    background-repeat: no-repeat;
+    background-size: 40%;
+    background-position: center;
+   
 }
 
 #style-13::-webkit-scrollbar-thumb {
@@ -66,3 +71,18 @@ body {
 .title {
     font-size: 72px !important;
 }
+
+#instructions {
+    position: absolute;
+    margin-top: 50%;
+    margin-left: 3%;
+    height: 20%;
+    width: 25%;
+    top: 0;
+    bottom: 0;
+    padding: 20px;
+    background-color: rgba(243, 236, 219, 0.6);
+    overflow-y: scroll;
+    font-family: sans-serif;
+    color: black;
+  }
