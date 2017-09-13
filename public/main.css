@@ -51,9 +51,9 @@ body {
 
 .background-color {
     background-color: rgb(243, 236, 219);
-    background: url('pictures/shoe-store-locator-logo.png') ;
+    background-image: url('pictures/shoe-store-locator-logo.png') ;
     background-repeat: no-repeat;
-    background-size: 40%;
+    background-size: 45%;
     background-position: center;
    
 }
@@ -69,7 +69,7 @@ body {
 }
 
 .title {
-    font-size: 72px !important;
+    font-size: 48px !important;
 }
 
 #instructions {
