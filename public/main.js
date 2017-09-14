@@ -126,7 +126,7 @@ callMap = () => {
                                 }
                             },
                             paint: {
-                                'line-width': 3
+                                'line-width': 5
                             }
                         })
                         map.addLayer({
@@ -158,13 +158,13 @@ callMap = () => {
                             }
 
                         });
-                        var instructions = document.getElementById('instructions');
-                        var steps = data.routes[0].legs[0].steps;
+                        // var instructions = document.getElementById('instructions');
+                        // var steps = data.routes[0].legs[0].steps;
                         
-                        steps.forEach(function (step) {
-                            instructions.insertAdjacentHTML('beforeend', '<p>' + step.maneuver.instruction + '</p>');
-                            return steps.innerHTML = ''
-                        })
+                        // steps.forEach(function (step) {
+                        //     instructions.insertAdjacentHTML('beforeend', '<p>' + step.maneuver.instruction + '</p>');
+                        //     return steps.innerHTML = ''
+                        // })
 
                          
                         
