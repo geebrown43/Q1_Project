@@ -190,23 +190,24 @@ callMap = () => {
                         //     directions.insertAdjacentHTML('beforeend', '<p>' + step.maneuver.instruction + '</p>');
                             
                         // })
-
-                        var content = document.getElementsByClassName('store_info')
-                        for(var i = 0; i < content.length; i++){
+                        var distance = data.routes
+                        console.log(distance[0].distance)
+                        for(var i = 0; i < distance.length; i++){
                             var p = document.createElement('p')
-                            var distance = parseInt((data.routes[0].distance) * 0.00053996)
-                            
-                                p.innerText='Distance Away ' + distance + ' mi'
-                                content[i].append(p)
+                            var content = document.getElementsByClassName('para_content')[0]
+                            content.innerHTML = ''
+                                p.innerText='Distance Away ' + parseInt(distance[0].distance * 0.00053996) + ' mi'
+                                content.append(p)
+                                
                                 }
-                            
+                                
                             
     
-                             console.log(content)
+                             
 
                         
                         
-                        
+                             //* 0.00053996
                     });
 
             })
