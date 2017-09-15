@@ -75,7 +75,7 @@ getData = (id) => {
                                             flyToStore(linkId)
                                             directionsAPI(linkId)
                                             
-                                            console.log('link id is the element of the store with lat/long attributes')
+                                           
 
                                         })
                                     }
@@ -191,9 +191,14 @@ callMap = () => {
                         //     directions.insertAdjacentHTML('beforeend', '<p>' + step.maneuver.instruction + '</p>');
                             
                         // })
+                        distance = () => {
+                            
+                        }
 
                         var content = document.getElementsByClassName('store_info')
+
                         for(var i = 0; i < content.length; i++){
+                            var arrofDistance = []
                             var p = document.createElement('p')
                             var distance = parseInt((data.routes[0].distance) * 0.00053996)
                             
