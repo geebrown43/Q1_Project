@@ -86,3 +86,15 @@ body {
     font-family: sans-serif;
     color: black;
   }
+
+  .para_content {
+      border: 2px solid rgb(213, 92, 90);
+      height:  5%;
+      width: 90%;
+      font-size: 20px;
+      text-align: center;
+  }
+
+  .para_content p {
+      margin-top: 2%;
+  }
