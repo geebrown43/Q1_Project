@@ -89,12 +89,12 @@ body {
 
   .para_content {
       border: 2px solid rgb(213, 92, 90);
-      height:  5%;
+      height:  6%;
       width: 90%;
       font-size: 20px;
       text-align: center;
   }
 
   .para_content p {
-      margin-top: 2%;
+      margin-top: 0;
   }
