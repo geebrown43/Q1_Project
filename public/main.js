@@ -110,7 +110,7 @@ callMap = () => {
     flyToStore = (a) => {
         map.flyTo({
             center: [a.dataset.lng, a.dataset.lat],
-            zoom: 15
+            zoom: 12
         });
 
     }
